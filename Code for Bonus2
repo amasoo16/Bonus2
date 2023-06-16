@@ -1,0 +1,72 @@
+namespace Bonus2
+{
+    using System;
+    class Plane 
+
+        //Bonus 2 - Assignment
+        //Abdullah Masood - 301342047 - Programming 2 
+    {
+        public string Manufactory { get; set; }
+        public string Model { get; set; }
+        public int Capacity { get; set; }
+        public string Type { get; set; }
+        public string SerialNumber { get; set; }
+
+        public Plane()
+        {
+            Manufactory = "unknown";
+            Model = "unknown";
+            Capacity = 0;
+            Type = "unassigned";
+            SerialNumber = "00000";
+        }
+
+        public Plane(string manufactory, string model, int capacity, string type, string serialNumber)
+        {
+            Manufactory = manufactory;
+            Model = model;
+            Capacity = capacity;
+            Type = type;
+            SerialNumber = serialNumber;
+        }
+
+        public bool HasCapacity(int NumberOfPeople)
+        {
+            return NumberOfPeople <= Capacity;
+        }
+
+        public override string ToString()
+        {
+            return $"Manufactory: {Manufactory}, Model: {Model}, Capacity: {Capacity}, Type: {Type}, Serial Number: {SerialNumber}";
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Plane> planes = new List<Plane>();
+
+            //List of 5 planes 
+            planes.Add(new Plane("Boeing", "727", 150, "passenger", "12345"));
+            planes.Add(new Plane("Airbus", "A320", 500, "passenger", "67890"));
+            planes.Add(new Plane("Lockheed Martin", "F-15", 1, "military", "54321"));
+            planes.Add(new Plane("Douglas", "DC-3", 50, "passenger", "98765"));
+            planes.Add(new Plane("Junkers", "Ju 52", 8, "cargo", "24680"));
+
+            //Looping through the list and printing the ToString() of each plane. 
+            foreach (var plane in planes)
+            {
+                Console.WriteLine(plane.ToString());
+            }
+
+            //Testing the HasCapacity method with different number of people
+            int numberOfPeople = 100;
+            foreach (var plane in planes)
+            {
+                Console.WriteLine($"Plane {plane.SerialNumber} has capacity for {numberOfPeople} people: {plane.HasCapacity(numberOfPeople)}");
+            }
+        }
+    }
+}
+
